@@ -5,7 +5,9 @@ const Navbar = () => {
     <nav className="nav">
       <ul>
         <li>
-          <a href="/">Trax-Stats</a>
+          <h1>
+            <a href="/">Trax-Stats</a>
+          </h1>
         </li>
       </ul>
     </nav>

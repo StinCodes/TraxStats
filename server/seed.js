@@ -37,3 +37,11 @@ const players = [
 ]
 
 module.exports = players
+
+//In React...
+//create API route that speaks to Node/Express server
+//fetch from localhost:####/getPlayerData
+
+//In Express...
+//Create a GET route (localhost:####/getPlayerData)
+//This will call the data from the NBA API and send data to react

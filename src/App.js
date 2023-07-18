@@ -10,4 +10,6 @@ function App() {
   );
 }
 
+//do i declare the json dummy data as an object variable in app.js file? or keep it as a separate file and import it
+
 export default App;
