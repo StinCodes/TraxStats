@@ -15,7 +15,7 @@ const SearchPlayer = () => {
   });
 
   const submitForm = (data) => {
-    axios.get(`https://balldontlie.io/api/v1/players?search=${data.firstName}`).then((res)=>{
+    axios.get(`https://balldontlie.io/api/v1/players?search=${data.lastName}`).then((res)=>{
       console.log(res.data)
     })
   };
