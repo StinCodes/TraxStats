@@ -40,16 +40,22 @@ const SearchPlayer = () => {
 
   const submitForm = async () => {
     try {
+      const body = { firstName: getValues("lastName") };
+      // const response = await axios.post("/auth/register", body, {
+      //       header: {
+      //           'Content-Type': 'application/json'
+      //       }
       const response = await axios
         .get(`http://localhost:8080/api/v1/`, {
           method: "GET",
-          body: JSON.stringify({
-            lastName: getValues("lastName"),
-          }),
+          // body: JSON.stringify({
+          //   lastName: getValues("lastName"),
+          // }),
+          body,
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
           },
         })
         .then((response) => response)
