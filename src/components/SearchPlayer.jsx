@@ -10,14 +10,53 @@ const SearchPlayer = () => {
     lastName: yup.string().required("Player's last name is required!"),
   });
 
-  const { register, handleSubmit, formState: {errors} } = useForm({
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data) => {
-    axios.get(`https://balldontlie.io/api/v1/players?search=${data.lastName}`).then((res)=>{
-      console.log(res.data)
-    })
+  console.log(
+    "🚀 ~ file: SearchPlayer.jsx:17 ~ SearchPlayer ~ lastName:",
+    getValues("lastName")
+  );
+
+  // const options = {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  //   },
+  //   params: { lastName: getValues("lastName") },
+  // };
+
+  // const submitForm = () => {
+  //   axios.get(`http://localhost:8080/api/v1/`, { options }).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
+
+  const submitForm = async () => {
+    try {
+      const response = await axios
+        .get(`http://localhost:8080/api/v1/`, {
+          method: "GET",
+          body: JSON.stringify({
+            lastName: getValues("lastName"),
+          }),
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => response)
+        .then((json) => console.log(json));
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   return (
@@ -28,10 +67,9 @@ const SearchPlayer = () => {
       <h3>Player Last Name</h3>
       <input type="text" placeholder="Jordan..." {...register("lastName")} />
       <p className="formErrMsg">{errors.lastName?.message}</p>
-      <input type="submit"/>
+      <input type="submit" />
     </form>
   );
 };
 
 export default SearchPlayer;
-

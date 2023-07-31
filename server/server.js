@@ -1,19 +1,36 @@
 const express = require("express");
 const app = express();
+const bodyParser = require('body-parser')
 const players = require('./routes/players')
+// const formidable = require("formidable");
 
 const PORT = process.env.PORT || 8080
 
-// https://balldontlie.io/api/v1/players?search=lebronjames
+const cors = require('cors');
+
+const corsOption = {
+    origin: ['http://localhost:3000'],
+};
+app.use(cors(corsOption));
+
+app.use(cors())
 
 //to access info from forms
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }));
+//allows you to use data from react via json objects
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
-app.get(`/api/v1`, (req, res) => {
-  res.send("helloWorld!");
+
+
+// https://balldontlie.io/api/v1/players?search=lebronjames
+
+app.get(`/api/v1/`, (req, res) => {
+  console.log(req)
+  res.send('helloworld');
 });
 
-app.use(`/api/v1/players?search=${lastName}`, players)
+// app.use(`/api/v1/players?search=${lastName}`, players)
 
 app.listen(PORT, ()=>{
   console.log(`Server started at ${PORT}`)
