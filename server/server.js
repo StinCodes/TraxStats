@@ -25,7 +25,7 @@ app.use(bodyParser.raw());
 // https://balldontlie.io/api/v1/players?search=lebronjames
 
 app.get(`/api/v1/`, (req, res) => {
-  console.log(req)
+  // console.log(req)
   res.send(req);
 });
 

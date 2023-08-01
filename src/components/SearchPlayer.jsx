@@ -19,46 +19,21 @@ const SearchPlayer = () => {
     resolver: yupResolver(schema),
   });
 
-  console.log(
-    "🚀 ~ file: SearchPlayer.jsx:17 ~ SearchPlayer ~ lastName:",
-    getValues("lastName")
-  );
-
-  // const options = {
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  //   },
-  //   params: { lastName: getValues("lastName") },
-  // };
-
-  // const submitForm = () => {
-  //   axios.get(`http://localhost:8080/api/v1/`, { options }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
 
   const submitForm = async () => {
     try {
       const body = { firstName: getValues("lastName") };
-      // const response = await axios.post("/auth/register", body, {
-      //       header: {
-      //           'Content-Type': 'application/json'
-      //       }
       const response = await axios
         .get(`http://localhost:8080/api/v1/`, {
           method: "GET",
-          // body: JSON.stringify({
-          //   lastName: getValues("lastName"),
-          // }),
-          body,
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/x-www-form-urlencoded",
           },
+          body: JSON.stringify(body)
         })
-        .then((response) => response)
+        .then((response) => console.log(response))
         .then((json) => console.log(json));
     } catch (error) {
       console.warn(error);
