@@ -22,16 +22,16 @@ const SearchPlayer = () => {
 
   const submitForm = async () => {
     try {
-      const body = { firstName: getValues("lastName") };
+      const body = { lastName: getValues("lastName") };
       const response = await axios
-        .get(`http://localhost:8080/api/v1/`, {
-          method: "GET",
+        .post(`http://localhost:8080/api/v1/`, {
+          method: "POST",
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(body)
+          body,
         })
         .then((response) => console.log(response))
         .then((json) => console.log(json));
