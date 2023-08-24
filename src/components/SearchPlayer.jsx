@@ -7,8 +7,7 @@ import axios from "axios";
 const SearchPlayer = () => {
   const [playerStats, setPlayerStats] = useState([])
   const schema = yup.object().shape({
-    firstName: yup.string(),
-    lastName: yup.string().required("Player's last name is required!"),
+    playerName: yup.string().required("Player's  name is required!")
   });
 
   const {
@@ -22,7 +21,7 @@ const SearchPlayer = () => {
 
   const submitForm = async (data) => {
     try {
-      const body = { lastName: data.lastName };
+      const body = { playerName: data.playerName };
       const response = await axios
         .post(`http://localhost:8080/api/v1/`, {
           method: "POST",
@@ -41,12 +40,9 @@ const SearchPlayer = () => {
   return (
     <>
       <form onSubmit={handleSubmit(submitForm)}>
-        <h3>Player First Name</h3>
-        <input type="text" placeholder="Michael..." {...register("firstName")} />
-        <p className="formErrMsg">{errors.firstName?.message}</p>
-        <h3>Player Last Name</h3>
-        <input type="text" placeholder="Jordan..." {...register("lastName")} />
-        <p className="formErrMsg">{errors.lastName?.message}</p>
+        <h3>Player Name</h3>
+        <input type="text" placeholder="Michael Jordan..." {...register("playerName")} />
+        <p className="formErrMsg">{errors.playerName?.message}</p>
         <input type="submit" />
       </form>
       <h3>{JSON.stringify(playerStats)}</h3>

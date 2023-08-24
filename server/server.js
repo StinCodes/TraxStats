@@ -22,8 +22,8 @@ app.use(cors(corsOption));
 
 app.post(`/api/v1/`, (req, res) => {
   //declare value below as variable, make a req to API, then fill variable as template literal to URL
-  const lastName = req.body.body.lastName;
-  getPlayers(lastName, res);
+  const playerName = req.body.body.playerName;
+  getPlayers(playerName, res);
 
 });
 
