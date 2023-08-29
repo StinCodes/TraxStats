@@ -49,6 +49,7 @@ const getPlayers = async (lastName, res) => {
   // });
 };
 
+
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT}`);
 });
