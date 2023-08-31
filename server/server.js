@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const axios = require("axios");
 
-const players = require("./routes/players");
+// const players = require("./routes/players");
 
 const PORT = process.env.PORT || 8080;
 
@@ -22,16 +22,15 @@ app.use(cors(corsOption));
 
 app.post(`/api/v1/`, (req, res) => {
   //declare value below as variable, make a req to API, then fill variable as template literal to URL
-  const playerName = req.body.body.playerName;
+  const playerName = req.body.playerName;
   getPlayers(playerName, res);
-
 });
 
-const getPlayers = async (lastName, res) => {
+const getPlayers = async (playerName, res) => {
   // Fetch the API and convert it to json.
   try {
     const apiResponse = await axios.get(
-      `https://balldontlie.io/api/v1/players?search=${lastName}`
+      `https://balldontlie.io/api/v1/players?search=${playerName}`
     );
     const playerData = apiResponse.data.data;
     res.json(playerData);
@@ -40,10 +39,12 @@ const getPlayers = async (lastName, res) => {
     res.status(500).json({ error: "Error fetching players" });
   }
   // Save the returned data as an array.
+
   // const players = data.data;
   // console.log(players);
 
   // Create an element to display each individual player's information.
+  //One element for each stat/piece of info
   // response.array.forEach(player => {
   //   displayPlayer(player);
   // });
