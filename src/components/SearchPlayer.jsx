@@ -20,13 +20,7 @@ const SearchPlayer = () => {
 
   const submitForm = async (data) => {
     try {
-      // const body = { playerName: data.playerName };
       const response = await axios.post(`http://localhost:8080/api/v1/`, {
-        // method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        // body,
         playerName: data.playerName,
       });
       console.log(response.data);
