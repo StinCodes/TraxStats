@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
 const SearchPlayer = () => {
-  const [playerStats, setPlayerStats] = useState([]);
+  const [playerInfo, setPlayerInfo] = useState([]);
   const schema = yup.object().shape({
     playerName: yup.string().required("Player's  name is required!"),
   });
@@ -24,7 +24,7 @@ const SearchPlayer = () => {
         playerName: data.playerName,
       });
       console.log(response.data);
-      setPlayerStats(response.data);
+      setPlayerInfo(response.data);
     } catch (error) {
       console.warn(error);
     }
@@ -43,8 +43,8 @@ const SearchPlayer = () => {
         <input type="submit" />
       </form>
       <div>
-        {playerStats.map((stat, index)=>(
-          <h3 key={index}>{JSON.stringify(stat)}</h3>
+        {playerInfo.map((info, index)=>(
+          <h3 key={index}>{JSON.stringify(info)}</h3>
         ))}
       </div>
     </>
